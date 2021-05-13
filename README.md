@@ -160,15 +160,16 @@ Some test calculations were performed in 2019 for the F + CHD<sub>3</sub> &#8594
 
 Table 1. Details of the compute nodes and the mode of parallelization.
 
-| Location |  Paderborn               |
+| | info |
 |--------------|-----------------|
+| Location |  Paderborn               |
 |CPUs per node | 16        |
 | CPU type     | Intel Xeon E5-2670, 2.6GHz |
 |main memory per node	| 64 GB |
 |interconnect|	QDR InfiniBand PCIe3, 40 Gbit/s Mellanox|
 |accelerators used (such as GPUs)	| no |
 |number of MPI processes per node	|16 |
-|number of OpenMP threads per MPI process 	1|
+|number of OpenMP threads per MPI process |	1|
 
 The test calculations were performed using all the 16 cores on the computing nodes. The scaling is listed in Table 2 as the elapsed runtime (wall-clock time) T with respect to the number of nodes N. The resource usage evaluated as the product of runtime and number of nodes are also listed. In tests 1, 3, and 4, the runtime was systematically reduced when more computation nodes were used. The test calculations generally required similar amount of computation resources at a given problem size. It should be noted that the ABR program requires extensive MPI communication during the calculation. Latency of MPI communication is affected by connections among the computing nodes. Parallel efficiency depends on whether the nodes are connected to a common InfiniBand switch or not. The nodes in tests 1, 3 and 4 were randomly assigned by OpenCCS resource manager and they were not connected to a common InfiniBand switch. In test 2, the nodes were required to be connected to a common switch. Comparing tests 1 and 2 that both use 10 computations nodes, it is clear that test 2 required a short runtime due to less MPI latency in the communication. It should also be noted that the chunk size of data in each MPI communication affects the efficiency of the overlapped communication and computation. A optimized chunk size depends on the molecular system size and underlying hardware.
 
